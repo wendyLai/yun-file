@@ -1,0 +1,1 @@
+/home/lwr/yunFile/borrowers/tmp/funnel-input_base_path-T401Y2Jm.tmp/0/bower_components/ember-cli-test-loader/test-loader.js

@@ -1,0 +1,1 @@
+/home/lwr/yunFile/borrowers/app/components/input-password.js

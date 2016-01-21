@@ -1,0 +1,170 @@
+<header id="bodyheader" class="clearfix">
+	<h2 class="fl">
+		<a href="javascript:void(0)" class="padding-a">LOGO</a>
+	</h2>
+	<div class="fr">
+		<ul class="horizontal header-right">
+			<li>
+				<div id="user-span" class="clearfix">
+					<i class="icon-crown fl"></i>
+					{{
+						span-dropdown 
+						label="个人资料,购买容量,云冲印,退出登录" 
+						link="http://passport.baidu.com/center,http://yun.baidu.com/buy/center?tag=2,http://yun.baidu.com/buy/center?tag=5,javascript:void(0);" 
+						name="用户名"
+						item-icon=""
+					}}
+				</div>
+			</li>
+			<li>
+				<button class="bgred">会员中心</button>
+			</li>
+			<li>
+				<a href="http://pan.baidu.com/download" class="padding-a underline">客户端下载</a>
+			</li>
+			<li>
+				<a href="http://yun.baidu.com/pcloud/msg#notice/type=all" class="padding-a underline">通知</a>
+			</li>
+			<li>
+				{{
+					span-dropdown label="移动开放平台,收藏工具,版本更新,帮助中心,问题反馈,服务协议,权利申明" 
+					link="http://pan.baidu.com/platform/home,http://yun.baidu.com/tools,http://yun.baidu.com/disk/version,http://yun.baidu.com/disk/help,http://qingting.baidu.com/index?pid=19,http://yun.baidu.com/disk/duty,http://yun.baidu.com/disk/privacy" 
+					name="更多"
+					item-icon=""
+				}}
+			</li>
+		</ul>
+	</div>
+</header>
+
+<aside>
+	<ul class="nav-category">
+		{{#link-to "home.all"}}
+			<li>
+				<i class="icon-home"></i>
+				全部文件
+			</li>
+		{{/link-to}}
+
+		{{#link-to "home.picture"}}
+			<li>
+				<i class="icon-picture"></i>
+				图片
+			</li>
+		{{/link-to}}
+
+		{{#link-to "home.document"}}
+			<li>
+				<i class="icon-doc-text-inv"></i>
+				文档
+			</li>
+		{{/link-to}}
+
+		{{#link-to "home.video"}}
+			<li>
+				<i class="icon-videocam"></i>
+				视频
+			</li>
+		{{/link-to}}
+
+		{{#link-to "home.bt"}}
+			<li>
+				<i class="icon-leaf"></i>
+				种子
+			</li>
+		{{/link-to}}
+
+		{{#link-to "home.music"}}
+			<li>
+				<i class="icon-headphones"></i>
+				音乐
+			</li>
+		{{/link-to}}
+
+		{{#link-to "home.other"}}
+			<li>
+				<i class="icon-th"></i>
+				其它
+			</li>
+		{{/link-to}}
+	</ul>
+
+	<hr/>
+
+	<ul class="nav-share">
+		{{#link-to "home.share"}}
+			<li>
+				<i class="icon-share"></i>
+				我的分享
+			</li>
+		{{/link-to}}
+	</ul>
+
+	<hr/>
+
+	<ul class="nav-trash">
+		{{#link-to "home.trash"}}
+			<li>
+				<i class="icon-trash"></i>
+				回收站
+			</li>
+		{{/link-to}}
+	</ul>
+
+	<br/>
+
+	<ul class="horizontal nav-download">
+		<li>
+			<i class="icon-desktop"></i>
+			<br/>
+			云管家
+		</li>
+		<li>
+			<i class="icon-android"></i>
+			<br/>
+			安卓
+		</li>
+		<li>
+			<i class="icon-apple"></i>
+			<br/>
+			iPhone
+		</li>
+		<li>
+			<i class="icon-th-large"></i>
+			<br/>
+			{{
+				span-dropdown label="WP,Ipad,MAC同步盘,扫描二维码下载" 
+				link="http://pan.baidu.com/platform/home,http://yun.baidu.com/tools,http://yun.baidu.com/disk/version,,"
+				item-icon="icon-windows,icon-tablet,icon-laptop,icon-barcode"
+				name="更多"
+				ul-class="horizontal"
+				no-icon=true
+			}}
+		</li>
+	</ul>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+
+	<ul class="nav-volume">
+		<li>
+			<i class="icon-megaphone blue"></i>
+			<a href="http://yun.baidu.com/1t" target="_blank" class="blue underline">免费领取2048G</a>容量啦~
+		</li>
+		<li>
+			<progress value=0.2 position></progress>
+			<div id="storage-volume">
+				<span id="volume-used">0.2</span>
+				/
+				<span id="volume-total">1</span>
+				<a class="fr blue" href="http://yun.baidu.com/1t" target="_blank">扩容</a>
+			</div>
+		</li>
+	</ul>
+</aside>
+
+<section id="main">
+	{{outlet}}
+</section>

@@ -1,0 +1,1 @@
+/home/lwr/yunFile/borrowers/app/components/button-offline-download.js

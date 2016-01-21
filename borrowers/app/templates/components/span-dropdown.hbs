@@ -1,0 +1,15 @@
+<div class="span-dropdown" onmouseover={{action "overDropdown"}} onmouseout={{action "outDropdown"}}>
+	<span>{{name}}</span>
+	{{#unless no-icon}}
+		<i class="icon-down-dir"></i>
+	{{/unless}}
+	<ul class={{ul-class}}>		
+		<label></label>
+		{{#each items as |item|}}
+			<li>
+				<i class={{item.icon}}></i>
+				<a href={{item.url}}>{{item.content}}</a>
+			</li>
+		{{/each}}
+	</ul>
+</div>

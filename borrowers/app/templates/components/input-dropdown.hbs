@@ -1,0 +1,19 @@
+<div class="input-dropdown">
+	<input type="text" placeholder="请选择...">
+	<i class="icon-down-dir inset" {{action "doDropdown"}}></i>
+	<ul>
+		{{#each items as |item|}}
+			<li {{action "selectOne"}}>{{item}}</li>
+		{{/each}}
+	</ul>
+</div>
+
+<script>
+	$(function(){
+		$(".input-dropdown li").mouseover(function(){
+			$(this).addClass("checked").siblings().removeClass("checked");
+		}).mouseout(function(){
+			$(this).removeClass("checked");
+		})
+	})
+</script>

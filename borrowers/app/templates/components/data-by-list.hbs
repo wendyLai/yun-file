@@ -1,0 +1,38 @@
+<div id="list-tabel">
+	<div id="list-header">
+		<ul class="horizontal clearfix">
+			<li>
+				<div {{action "selectAll"}}>
+					{{input-checkbox label="文件名"}}
+				</div>
+				&nbsp;
+				<div id="cell-btns" class="hide">
+					{{data-cell-btns}}
+				</div>
+			</li>
+			<li>
+				<span>大小</span>
+			</li>
+			<li>
+				<span>修改日期</span>
+			</li>
+		</ul>
+	</div>
+	<div id="list-main">
+		{{#each model as |data|}}
+			<ul class="horizontal clearfix">
+				<li>
+					<span onclick={{action "selectItem"}}>
+						{{input-checkbox label=data.name}}
+					</span>				
+				</li>
+				<li>
+					<span>{{data.size}}</span>
+				</li>
+				<li>
+					<span>{{data.date}}</span>
+				</li>
+			</ul>
+		{{/each}}
+	</div>
+</div>

@@ -1,0 +1,1 @@
+/home/lwr/yunFile/borrowers/app/components/button-my-device.js

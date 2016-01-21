@@ -1,0 +1,102 @@
+<div id="list-tabel">
+	<div id="list-header">
+		{{#if trash}}
+			<ul class="horizontal clearfix">
+				<li>
+					<div {{action "selectAll"}}>
+						{{input-checkbox label="文件名"}}
+					</div>
+					&nbsp;
+					<div id="cell-btns" class="hide">
+						<button class="transparent">
+							<i class="icon-reply"></i>
+							还原
+						</button>
+					</div>
+				</li>
+				<li>
+					<span>大小</span>
+				</li>
+				<li>
+					<span>删除时间</span>
+				</li>
+				<li>
+					<span>有效时间</span>
+				</li>
+			</ul>
+		{{/if}}
+
+		{{#if share}}
+			<ul class="horizontal clearfix">
+				<li>
+					<div {{action "selectAll"}}>
+						{{input-checkbox label="分享文件"}}
+					</div>
+					&nbsp;
+					<div id="cell-btns" class="hide">
+						<button class="transparent">
+							<i class="icon-unlink"></i>
+							取消分享
+						</button>
+					</div>
+				</li>
+				<li>
+					<span>分享时间</span>
+				</li>
+				<li>
+					<span>浏览次数</span>
+				</li>
+				<li>
+					<span>保存次数</span>
+				</li>
+				<li>
+					<span>下载次数</span>
+				</li>
+			</ul>
+		{{/if}}
+	</div>
+	<div id="list-main">
+		{{#each model as |data|}}
+			{{#if trash}}
+				<ul class="horizontal clearfix">
+					<li>
+						<span onclick={{action "selectItem"}}>
+							{{input-checkbox label=data.name}}
+						</span>				
+					</li>
+					<li>
+						<span>{{data.size}}</span>
+					</li>
+					<li>
+						<span>{{data.date}}</span>
+					</li>
+					<li>
+						<span>{{data.vaild}}</span>
+					</li>
+				</ul>
+			{{/if}}
+
+			{{#if share}}
+				<ul class="horizontal clearfix">
+					<li>
+						<span onclick={{action "selectItem"}}>
+							{{input-checkbox label=data.name}}
+						</span>				
+					</li>
+					<li>
+						<span>{{data.date}}</span>
+					</li>
+					<li>
+						<span>{{data.view}}</span>
+					</li>
+					<li>
+						<span>{{data.save}}</span>
+					</li>
+					<li>
+						<span>{{data.download}}</span>
+					</li>
+				</ul>
+			{{/if}}
+		{{/each}}
+	</div>
+</div>

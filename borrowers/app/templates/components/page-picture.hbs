@@ -1,0 +1,26 @@
+<div class="page-picture clearfix">
+	<div class="fl">
+		<div id="picture-header">
+			<div {{action "selectAll"}}>  
+				{{input-checkbox label=""}}
+			</div>
+			&nbsp;
+			<div id="cell-btns">
+				{{data-cell-btns}}
+			</div>
+		</div>
+
+		<div id="picture-main">
+			{{#each model as |data|}}
+				{{data-by-picture data=data}}
+			{{/each}}
+		</div>
+	</div>
+
+	<div class="fr">
+		<div id="picture-timer">
+			时间轴
+		</div>
+	</div>
+
+</div>

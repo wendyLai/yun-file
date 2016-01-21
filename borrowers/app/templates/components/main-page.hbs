@@ -1,0 +1,32 @@
+<header class="clearfix mainheader">
+	<div class="row-btns clearfix">
+		<div class="fl">
+			{{button-upload}}
+			{{#if isAll}}
+				<button class="transparent">
+					<i class="icon-folder-open"></i>
+					新建文件夹
+				</button>
+			{{/if}}
+			{{button-offline-download}}
+			{{button-my-device}}
+		</div>
+		<div class="fr" {{action "selectType"}}>
+			{{switch-grid-list}}
+		</div>
+	</div>
+</header>
+
+<hr/>
+
+{{row-count name=name total-number=model.length}} 
+
+{{#if ifList}}
+	{{data-by-list model=model}}
+{{/if}}
+
+
+{{#if ifGrid}}
+	{{data-by-grid model=model}}
+{{/if}}
+

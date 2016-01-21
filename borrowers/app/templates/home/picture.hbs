@@ -1,0 +1,13 @@
+<header class="mainheader">
+	<div class="active underline-title timer" {{action "isTimer"}}>时光轴</div>
+	<div class="underline-title lately" {{action "isLately"}}>最近上传</div>
+</header>
+
+{{#if ifTimer}}
+	{{page-picture model=model}}
+{{/if}}
+
+{{#if ifLately}}
+	{{row-count name="全部图片" total-number=model.length}}
+	{{data-by-grid model=model}}
+{{/if}}

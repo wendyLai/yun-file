@@ -1,0 +1,27 @@
+<div class="data-by-picture">
+	<div class="picture-title clearfix">
+
+		<div class="fl clearfix" {{action "doToggle"}}>
+			<h4>{{data.date}}</h4>
+			<i class="icon-down-open toggle-icon"></i>
+			<span>1张</span>
+		</div>
+
+		<div class="fr" {{action "selectAll"}}>
+			{{input-checkbox label="全选"}}
+		</div>
+		
+	</div>
+
+	<div class="picture-show clearfix">
+		<!--需要修改，由于data类型(文件夹、图片、音乐)暂时没有设定-->
+		{{#if data.children}}
+			{{#each data.children as |children|}}
+				{{data-grid-item data=children}}
+			{{/each}}
+		{{else}}
+			{{data-grid-item data=data}}
+		{{/if}}
+	</div>
+
+</div>

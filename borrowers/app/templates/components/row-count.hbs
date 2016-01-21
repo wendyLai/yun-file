@@ -1,0 +1,13 @@
+<div class="clearfix row-count">
+	<span class="fl">
+		{{name}}
+	</span>
+	<div class="fr">
+		<!--如果正在加载后端数据，data.isLoading的值会变成true-->
+		{{#if isLoading}}
+			获取更多数据...
+		{{else}}
+			已全部加载，共<span>{{total-number}}</span>个
+		{{/if}}
+	</div>
+</div>

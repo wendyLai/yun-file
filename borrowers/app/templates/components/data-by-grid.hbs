@@ -1,0 +1,16 @@
+<div id="grid-tabel">
+	<div id="grid-header">
+		<div {{action "selectAll"}}>
+			{{input-checkbox label=""}}
+		</div>
+		&nbsp;
+		<div id="cell-btns" class="hide">
+			{{data-cell-btns}}
+		</div>
+	</div>
+	<div id="grid-main">
+		{{#each model as |data|}}
+			{{data-grid-item data=data}}
+		{{/each}}
+	</div>
+</div>

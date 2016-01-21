@@ -1,0 +1,16 @@
+<header class="mainheader clearfix">
+	<div class="fr">
+		<label>提示：回收站文件不占用您的空间，文件保存10天后将被服务器清除。</label>
+		<button class="transparent">
+			<i class="icon-trash"></i>
+			清空回收站
+		</button>
+	</div>
+</header>
+
+
+<hr/>
+
+{{row-count name="回收站" total-number=model.length}} 
+
+{{page-list model=model trash=true}}
