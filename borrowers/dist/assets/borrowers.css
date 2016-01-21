@@ -954,6 +954,7 @@
   aside{
     left: 0;
     top:3.4em;
+    z-index: 9;
     width:210px;
     height: calc(100% - 3.4em);
     display: block;
