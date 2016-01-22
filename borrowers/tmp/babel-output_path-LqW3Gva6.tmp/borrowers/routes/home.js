@@ -37,6 +37,7 @@ define("borrowers/routes/home", ["exports", "ember"], function (exports, _ember)
 		size: "-",
 		date: "2016-01-13 15:00"
 	}];
+
 	exports["default"] = _ember["default"].Route.extend({
 		model: function model() {
 			return listData;

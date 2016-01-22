@@ -46,6 +46,8 @@ var listData = [
 			date:"2016-01-13 15:00"
 		}
 	];
+
+
 export default Ember.Route.extend({
 	model: function(){
 		return listData;

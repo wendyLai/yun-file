@@ -28,12 +28,12 @@ export default Ember.HTMLBars.template((function() {
       dom.setAttribute(el1,"class","input-checkbox");
       var el2 = dom.createTextNode("\n	");
       dom.appendChild(el1, el2);
-      var el2 = dom.createElement("input");
-      dom.setAttribute(el2,"type","checkbox");
+      var el2 = dom.createElement("span");
       dom.appendChild(el1, el2);
       var el2 = dom.createTextNode("\n	");
       dom.appendChild(el1, el2);
-      var el2 = dom.createElement("span");
+      var el2 = dom.createElement("input");
+      dom.setAttribute(el2,"type","checkbox");
       dom.appendChild(el1, el2);
       var el2 = dom.createTextNode("\n	");
       dom.appendChild(el1, el2);
@@ -48,7 +48,7 @@ export default Ember.HTMLBars.template((function() {
     },
     buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
       var element0 = dom.childAt(fragment, [0]);
-      var element1 = dom.childAt(element0, [1]);
+      var element1 = dom.childAt(element0, [3]);
       var morphs = new Array(5);
       morphs[0] = dom.createAttrMorph(element0, 'onclick');
       morphs[1] = dom.createAttrMorph(element0, 'onmouseover');
@@ -61,7 +61,7 @@ export default Ember.HTMLBars.template((function() {
       ["attribute","onclick",["subexpr","action",["isCheck"],[],["loc",[null,[1,36],[1,56]]]]],
       ["attribute","onmouseover",["subexpr","action",["overCss"],[],["loc",[null,[1,69],[1,89]]]]],
       ["attribute","onmouseout",["subexpr","action",["outCss"],[],["loc",[null,[1,101],[1,120]]]]],
-      ["attribute","name",["get","name",["loc",[null,[2,31],[2,35]]]]],
+      ["attribute","name",["get","name",["loc",[null,[3,31],[3,35]]]]],
       ["content","label",["loc",[null,[4,8],[4,17]]]]
     ],
     locals: [],

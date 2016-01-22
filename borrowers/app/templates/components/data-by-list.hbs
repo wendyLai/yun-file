@@ -1,7 +1,7 @@
 <div id="list-tabel">
 	<div id="list-header">
 		<ul class="horizontal clearfix">
-			<li>
+			<li {{action "sortByName"}}>
 				<div {{action "selectAll"}}>
 					{{input-checkbox label="文件名"}}
 				</div>
@@ -9,11 +9,16 @@
 				<div id="cell-btns" class="hide">
 					{{data-cell-btns}}
 				</div>
+				<button class="sort-by-name un-show">
+					<i class="icon-down blue"></i>
+				</button>
 			</li>
-			<li>
+
+			<li {{action "sortBySize"}}>
 				<span>大小</span>
 			</li>
-			<li>
+
+			<li {{action "sortByData"}}>
 				<span>修改日期</span>
 			</li>
 		</ul>
@@ -26,9 +31,11 @@
 						{{input-checkbox label=data.name}}
 					</span>				
 				</li>
+
 				<li>
 					<span>{{data.size}}</span>
 				</li>
+
 				<li>
 					<span>{{data.date}}</span>
 				</li>

@@ -7,11 +7,11 @@ export default Ember.HTMLBars.template((function() {
         "loc": {
           "source": null,
           "start": {
-            "line": 22,
+            "line": 27,
             "column": 2
           },
           "end": {
-            "line": 36,
+            "line": 43,
             "column": 2
           }
         },
@@ -43,7 +43,7 @@ export default Ember.HTMLBars.template((function() {
         var el3 = dom.createTextNode("				\n				");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n				");
+        var el2 = dom.createTextNode("\n\n				");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("li");
         var el3 = dom.createTextNode("\n					");
@@ -55,7 +55,7 @@ export default Ember.HTMLBars.template((function() {
         var el3 = dom.createTextNode("\n				");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n				");
+        var el2 = dom.createTextNode("\n\n				");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("li");
         var el3 = dom.createTextNode("\n					");
@@ -85,10 +85,10 @@ export default Ember.HTMLBars.template((function() {
         return morphs;
       },
       statements: [
-        ["attribute","onclick",["subexpr","action",["selectItem"],[],["loc",[null,[25,19],[25,42]]]]],
-        ["inline","input-checkbox",[],["label",["subexpr","@mut",[["get","data.name",["loc",[null,[26,29],[26,38]]]]],[],[]]],["loc",[null,[26,6],[26,40]]]],
-        ["content","data.size",["loc",[null,[30,11],[30,24]]]],
-        ["content","data.date",["loc",[null,[33,11],[33,24]]]]
+        ["attribute","onclick",["subexpr","action",["selectItem"],[],["loc",[null,[30,19],[30,42]]]]],
+        ["inline","input-checkbox",[],["label",["subexpr","@mut",[["get","data.name",["loc",[null,[31,29],[31,38]]]]],[],[]]],["loc",[null,[31,6],[31,40]]]],
+        ["content","data.size",["loc",[null,[36,11],[36,24]]]],
+        ["content","data.date",["loc",[null,[40,11],[40,24]]]]
       ],
       locals: ["data"],
       templates: []
@@ -107,7 +107,7 @@ export default Ember.HTMLBars.template((function() {
           "column": 0
         },
         "end": {
-          "line": 38,
+          "line": 45,
           "column": 6
         }
       },
@@ -154,10 +154,22 @@ export default Ember.HTMLBars.template((function() {
       var el6 = dom.createTextNode("\n				");
       dom.appendChild(el5, el6);
       dom.appendChild(el4, el5);
+      var el5 = dom.createTextNode("\n				");
+      dom.appendChild(el4, el5);
+      var el5 = dom.createElement("button");
+      dom.setAttribute(el5,"class","sort-by-name un-show");
+      var el6 = dom.createTextNode("\n					");
+      dom.appendChild(el5, el6);
+      var el6 = dom.createElement("i");
+      dom.setAttribute(el6,"class","icon-down blue");
+      dom.appendChild(el5, el6);
+      var el6 = dom.createTextNode("\n				");
+      dom.appendChild(el5, el6);
+      dom.appendChild(el4, el5);
       var el5 = dom.createTextNode("\n			");
       dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
-      var el4 = dom.createTextNode("\n			");
+      var el4 = dom.createTextNode("\n\n			");
       dom.appendChild(el3, el4);
       var el4 = dom.createElement("li");
       var el5 = dom.createTextNode("\n				");
@@ -169,7 +181,7 @@ export default Ember.HTMLBars.template((function() {
       var el5 = dom.createTextNode("\n			");
       dom.appendChild(el4, el5);
       dom.appendChild(el3, el4);
-      var el4 = dom.createTextNode("\n			");
+      var el4 = dom.createTextNode("\n\n			");
       dom.appendChild(el3, el4);
       var el4 = dom.createElement("li");
       var el5 = dom.createTextNode("\n				");
@@ -205,20 +217,29 @@ export default Ember.HTMLBars.template((function() {
     },
     buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
       var element2 = dom.childAt(fragment, [0]);
-      var element3 = dom.childAt(element2, [1, 1, 1]);
+      var element3 = dom.childAt(element2, [1, 1]);
       var element4 = dom.childAt(element3, [1]);
-      var morphs = new Array(4);
+      var element5 = dom.childAt(element4, [1]);
+      var element6 = dom.childAt(element3, [3]);
+      var element7 = dom.childAt(element3, [5]);
+      var morphs = new Array(7);
       morphs[0] = dom.createElementMorph(element4);
-      morphs[1] = dom.createMorphAt(element4,1,1);
-      morphs[2] = dom.createMorphAt(dom.childAt(element3, [3]),1,1);
-      morphs[3] = dom.createMorphAt(dom.childAt(element2, [3]),1,1);
+      morphs[1] = dom.createElementMorph(element5);
+      morphs[2] = dom.createMorphAt(element5,1,1);
+      morphs[3] = dom.createMorphAt(dom.childAt(element4, [3]),1,1);
+      morphs[4] = dom.createElementMorph(element6);
+      morphs[5] = dom.createElementMorph(element7);
+      morphs[6] = dom.createMorphAt(dom.childAt(element2, [3]),1,1);
       return morphs;
     },
     statements: [
+      ["element","action",["sortByName"],[],["loc",[null,[4,7],[4,30]]]],
       ["element","action",["selectAll"],[],["loc",[null,[5,9],[5,31]]]],
       ["inline","input-checkbox",[],["label","文件名"],["loc",[null,[6,5],[6,35]]]],
       ["content","data-cell-btns",["loc",[null,[10,5],[10,23]]]],
-      ["block","each",[["get","model",["loc",[null,[22,10],[22,15]]]]],[],0,null,["loc",[null,[22,2],[36,11]]]]
+      ["element","action",["sortBySize"],[],["loc",[null,[17,7],[17,30]]]],
+      ["element","action",["sortByData"],[],["loc",[null,[21,7],[21,30]]]],
+      ["block","each",[["get","model",["loc",[null,[27,10],[27,15]]]]],[],0,null,["loc",[null,[27,2],[43,11]]]]
     ],
     locals: [],
     templates: [child0]

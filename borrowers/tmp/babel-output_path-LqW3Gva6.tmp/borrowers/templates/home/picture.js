@@ -37,7 +37,7 @@ define("borrowers/templates/home/picture", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "page-picture", [], ["model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 22], [7, 27]]]]], [], []]], ["loc", [null, [7, 1], [7, 29]]]]],
+        statements: [["inline", "page-picture-timer", [], ["model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 28], [7, 33]]]]], [], []]], ["loc", [null, [7, 1], [7, 35]]]]],
         locals: [],
         templates: []
       };

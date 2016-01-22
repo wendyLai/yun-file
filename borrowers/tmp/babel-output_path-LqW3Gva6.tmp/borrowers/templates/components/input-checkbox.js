@@ -29,12 +29,12 @@ define("borrowers/templates/components/input-checkbox", ["exports"], function (e
         dom.setAttribute(el1, "class", "input-checkbox");
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("input");
-        dom.setAttribute(el2, "type", "checkbox");
+        var el2 = dom.createElement("span");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("span");
+        var el2 = dom.createElement("input");
+        dom.setAttribute(el2, "type", "checkbox");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
@@ -49,7 +49,7 @@ define("borrowers/templates/components/input-checkbox", ["exports"], function (e
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [1]);
+        var element1 = dom.childAt(element0, [3]);
         var morphs = new Array(5);
         morphs[0] = dom.createAttrMorph(element0, 'onclick');
         morphs[1] = dom.createAttrMorph(element0, 'onmouseover');
@@ -58,7 +58,7 @@ define("borrowers/templates/components/input-checkbox", ["exports"], function (e
         morphs[4] = dom.createMorphAt(dom.childAt(element0, [5]), 0, 0);
         return morphs;
       },
-      statements: [["attribute", "onclick", ["subexpr", "action", ["isCheck"], [], ["loc", [null, [1, 36], [1, 56]]]]], ["attribute", "onmouseover", ["subexpr", "action", ["overCss"], [], ["loc", [null, [1, 69], [1, 89]]]]], ["attribute", "onmouseout", ["subexpr", "action", ["outCss"], [], ["loc", [null, [1, 101], [1, 120]]]]], ["attribute", "name", ["get", "name", ["loc", [null, [2, 31], [2, 35]]]]], ["content", "label", ["loc", [null, [4, 8], [4, 17]]]]],
+      statements: [["attribute", "onclick", ["subexpr", "action", ["isCheck"], [], ["loc", [null, [1, 36], [1, 56]]]]], ["attribute", "onmouseover", ["subexpr", "action", ["overCss"], [], ["loc", [null, [1, 69], [1, 89]]]]], ["attribute", "onmouseout", ["subexpr", "action", ["outCss"], [], ["loc", [null, [1, 101], [1, 120]]]]], ["attribute", "name", ["get", "name", ["loc", [null, [3, 31], [3, 35]]]]], ["content", "label", ["loc", [null, [4, 8], [4, 17]]]]],
       locals: [],
       templates: []
     };

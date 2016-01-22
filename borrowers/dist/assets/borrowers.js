@@ -38,6 +38,9 @@ define('borrowers/components/button-offline-download', ['exports', 'ember'], fun
 define('borrowers/components/button-upload', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({});
 });
+define('borrowers/components/cell-sort', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Component.extend({});
+});
 define('borrowers/components/data-by-grid', ['exports', 'ember'], function (exports, _ember) {
 	exports['default'] = _ember['default'].Component.extend({
 		actions: {
@@ -79,14 +82,18 @@ define('borrowers/components/data-by-list', ['exports', 'ember'], function (expo
 				var this_input_length = $("#" + this_id).find("#list-main input").length;
 				//console.log( this_input_length );
 
+				//点击全选checkbox 1.#cell-btns隐藏/显示 2.li:first的label文字改变 3.li:first的checkbox的checked值false/true 4.排序icon隐藏/显示
+
 				if (!this_checked) {
 					$("#" + this_id).find("#list-main .input-checkbox span").removeClass("active").siblings("input").attr("checked", false);
 					$("#" + this_id).find("#list-header .input-checkbox label").html("文件名");
 					$("#" + this_id).find("#cell-btns").addClass("hide");
+					$("#" + this_id).find(".sort-by-name").removeClass("hide");
 				} else {
 					$("#" + this_id).find("#list-main .input-checkbox span").addClass("active").siblings("input").attr("checked", true);
 					$("#" + this_id).find("#list-header .input-checkbox label").html("已选中" + this_input_length + "个文件/文件夹");
 					$("#" + this_id).find("#cell-btns").removeClass("hide");
+					$("#" + this_id).find(".sort-by-name").addClass("hide");
 				}
 			},
 			selectItem: function selectItem() {
@@ -102,25 +109,58 @@ define('borrowers/components/data-by-list', ['exports', 'ember'], function (expo
 				var this_input_length = $("#" + this_id).find("#list-main input").length;
 				//console.log( this_input_length );
 
+				//确定整个页面是否有处于选中状态的checkbox
 				for (var i = 0; i < this_input_length; i++) {
 					this_has_checked = this_has_checked || $("#" + this_id).find("#list-main input").eq(i).attr("checked");
 					//console.log( this_has_checked );
 				}
 				//console.log( "*-*-*-*"+this_has_checked );
 
+				//若有选中的项，1.#cell-btns显示 2.排序icon隐藏 3.label值改为选中N个项 (反之每个项都没被选中...)
 				if (!this_has_checked) {
 					$("#" + this_id).find("#cell-btns").addClass("hide");
+					$("#" + this_id).find(".sort-by-name").removeClass("hide");
 					$("#" + this_id).find("#list-header .input-checkbox label").html("文件名");
 				} else {
 					$("#" + this_id).find("#cell-btns").removeClass("hide");
+					$("#" + this_id).find(".sort-by-name").addClass("hide");
 					$("#" + this_id).find("#list-header .input-checkbox label").html("已选中" + this_checked_length + "个文件/文件夹");
 				}
 
+				//如果所有项都选中，全选的checkbox也要选中
 				if (this_checked_length == this_input_length) {
 					$("#" + this_id).find("#list-header .input-checkbox span").addClass("active").siblings("input").attr("checked", true);
 				} else {
 					$("#" + this_id).find("#list-header .input-checkbox span").removeClass("active").siblings("input").attr("checked", false);
 				}
+			},
+			sortByName: function sortByName() {
+				var $ = _ember['default'].$;
+				var this_id = this.get('elementId');
+				//console.log( this_id );
+
+				var this_desc = $("#" + this_id).find(".sort-by-name i").hasClass("icon-down");
+				//console.log( this_desc );
+
+				//icon样式改变
+				if (this_desc) {
+					$("#" + this_id).find(".sort-by-name i").removeClass("icon-down").addClass("icon-up");
+				} else {
+					$("#" + this_id).find(".sort-by-name i").removeClass("icon-up").addClass("icon-down");
+				}
+
+				//数据排序
+
+				/*var this_model=this.get("model");
+    console.log( this_model );
+    	var ToDoList = Ember.Object.extend({
+    		todosSortingDesc: ['name:desc'],
+    	sortedTodosDesc: Ember.computed.sort("data","todosSortingDesc"),
+    	});
+    	var datalist = ToDoList.create({data: this_model});
+    
+    datalist.get('sortedTodosDesc');  
+    	console.log( datalist.get('sortedTodosDesc') );*/
 			}
 		}
 	});
@@ -495,9 +535,6 @@ define("borrowers/components/main-page", ["exports", "ember"], function (exports
 		}
 	});
 });
-define('borrowers/components/page-grid', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Component.extend({});
-});
 define('borrowers/components/page-list', ['exports', 'ember'], function (exports, _ember) {
 	exports['default'] = _ember['default'].Component.extend({
 		actions: {
@@ -558,7 +595,7 @@ define('borrowers/components/page-list', ['exports', 'ember'], function (exports
 		}
 	});
 });
-define('borrowers/components/page-picture', ['exports', 'ember'], function (exports, _ember) {
+define('borrowers/components/page-picture-timer', ['exports', 'ember'], function (exports, _ember) {
 	exports['default'] = _ember['default'].Component.extend({
 		actions: {
 			selectAll: function selectAll() {
@@ -592,9 +629,6 @@ define('borrowers/components/row-count', ['exports', 'ember'], function (exports
 		isLoading: false /*无需isLoading定义，在DS.Model 类中已经定义好，这边用来演示*/
 
 	});
-});
-define('borrowers/components/row-sort', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Component.extend({});
 });
 define("borrowers/components/span-dropdown", ["exports", "ember"], function (exports, _ember) {
 	exports["default"] = _ember["default"].Component.extend({
@@ -929,6 +963,7 @@ define("borrowers/routes/home", ["exports", "ember"], function (exports, _ember)
 		size: "-",
 		date: "2016-01-13 15:00"
 	}];
+
 	exports["default"] = _ember["default"].Route.extend({
 		model: function model() {
 			return listData;
@@ -1135,6 +1170,52 @@ define("borrowers/templates/components/button-upload", ["exports"], function (ex
     };
   })());
 });
+define("borrowers/templates/components/cell-sort", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.2.0",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "borrowers/templates/components/cell-sort.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "yield", ["loc", [null, [1, 0], [1, 9]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("borrowers/templates/components/data-by-grid", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -1280,11 +1361,11 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
+              "line": 27,
               "column": 2
             },
             "end": {
-              "line": 36,
+              "line": 43,
               "column": 2
             }
           },
@@ -1316,7 +1397,7 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
           var el3 = dom.createTextNode("				\n				");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n				");
+          var el2 = dom.createTextNode("\n\n				");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("li");
           var el3 = dom.createTextNode("\n					");
@@ -1328,7 +1409,7 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
           var el3 = dom.createTextNode("\n				");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n				");
+          var el2 = dom.createTextNode("\n\n				");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("li");
           var el3 = dom.createTextNode("\n					");
@@ -1357,7 +1438,7 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
           morphs[3] = dom.createMorphAt(dom.childAt(element0, [5, 1]), 0, 0);
           return morphs;
         },
-        statements: [["attribute", "onclick", ["subexpr", "action", ["selectItem"], [], ["loc", [null, [25, 19], [25, 42]]]]], ["inline", "input-checkbox", [], ["label", ["subexpr", "@mut", [["get", "data.name", ["loc", [null, [26, 29], [26, 38]]]]], [], []]], ["loc", [null, [26, 6], [26, 40]]]], ["content", "data.size", ["loc", [null, [30, 11], [30, 24]]]], ["content", "data.date", ["loc", [null, [33, 11], [33, 24]]]]],
+        statements: [["attribute", "onclick", ["subexpr", "action", ["selectItem"], [], ["loc", [null, [30, 19], [30, 42]]]]], ["inline", "input-checkbox", [], ["label", ["subexpr", "@mut", [["get", "data.name", ["loc", [null, [31, 29], [31, 38]]]]], [], []]], ["loc", [null, [31, 6], [31, 40]]]], ["content", "data.size", ["loc", [null, [36, 11], [36, 24]]]], ["content", "data.date", ["loc", [null, [40, 11], [40, 24]]]]],
         locals: ["data"],
         templates: []
       };
@@ -1375,7 +1456,7 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
             "column": 0
           },
           "end": {
-            "line": 38,
+            "line": 45,
             "column": 6
           }
         },
@@ -1422,10 +1503,22 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
         var el6 = dom.createTextNode("\n				");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n				");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("button");
+        dom.setAttribute(el5, "class", "sort-by-name un-show");
+        var el6 = dom.createTextNode("\n					");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("i");
+        dom.setAttribute(el6, "class", "icon-down blue");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n				");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
         var el5 = dom.createTextNode("\n			");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
+        var el4 = dom.createTextNode("\n\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
         var el5 = dom.createTextNode("\n				");
@@ -1437,7 +1530,7 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
         var el5 = dom.createTextNode("\n			");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
+        var el4 = dom.createTextNode("\n\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
         var el5 = dom.createTextNode("\n				");
@@ -1473,16 +1566,22 @@ define("borrowers/templates/components/data-by-list", ["exports"], function (exp
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element2 = dom.childAt(fragment, [0]);
-        var element3 = dom.childAt(element2, [1, 1, 1]);
+        var element3 = dom.childAt(element2, [1, 1]);
         var element4 = dom.childAt(element3, [1]);
-        var morphs = new Array(4);
+        var element5 = dom.childAt(element4, [1]);
+        var element6 = dom.childAt(element3, [3]);
+        var element7 = dom.childAt(element3, [5]);
+        var morphs = new Array(7);
         morphs[0] = dom.createElementMorph(element4);
-        morphs[1] = dom.createMorphAt(element4, 1, 1);
-        morphs[2] = dom.createMorphAt(dom.childAt(element3, [3]), 1, 1);
-        morphs[3] = dom.createMorphAt(dom.childAt(element2, [3]), 1, 1);
+        morphs[1] = dom.createElementMorph(element5);
+        morphs[2] = dom.createMorphAt(element5, 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element4, [3]), 1, 1);
+        morphs[4] = dom.createElementMorph(element6);
+        morphs[5] = dom.createElementMorph(element7);
+        morphs[6] = dom.createMorphAt(dom.childAt(element2, [3]), 1, 1);
         return morphs;
       },
-      statements: [["element", "action", ["selectAll"], [], ["loc", [null, [5, 9], [5, 31]]]], ["inline", "input-checkbox", [], ["label", "文件名"], ["loc", [null, [6, 5], [6, 35]]]], ["content", "data-cell-btns", ["loc", [null, [10, 5], [10, 23]]]], ["block", "each", [["get", "model", ["loc", [null, [22, 10], [22, 15]]]]], [], 0, null, ["loc", [null, [22, 2], [36, 11]]]]],
+      statements: [["element", "action", ["sortByName"], [], ["loc", [null, [4, 7], [4, 30]]]], ["element", "action", ["selectAll"], [], ["loc", [null, [5, 9], [5, 31]]]], ["inline", "input-checkbox", [], ["label", "文件名"], ["loc", [null, [6, 5], [6, 35]]]], ["content", "data-cell-btns", ["loc", [null, [10, 5], [10, 23]]]], ["element", "action", ["sortBySize"], [], ["loc", [null, [17, 7], [17, 30]]]], ["element", "action", ["sortByData"], [], ["loc", [null, [21, 7], [21, 30]]]], ["block", "each", [["get", "model", ["loc", [null, [27, 10], [27, 15]]]]], [], 0, null, ["loc", [null, [27, 2], [43, 11]]]]],
       locals: [],
       templates: [child0]
     };
@@ -1930,12 +2029,12 @@ define("borrowers/templates/components/input-checkbox", ["exports"], function (e
         dom.setAttribute(el1, "class", "input-checkbox");
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("input");
-        dom.setAttribute(el2, "type", "checkbox");
+        var el2 = dom.createElement("span");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("span");
+        var el2 = dom.createElement("input");
+        dom.setAttribute(el2, "type", "checkbox");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
@@ -1950,7 +2049,7 @@ define("borrowers/templates/components/input-checkbox", ["exports"], function (e
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [1]);
+        var element1 = dom.childAt(element0, [3]);
         var morphs = new Array(5);
         morphs[0] = dom.createAttrMorph(element0, 'onclick');
         morphs[1] = dom.createAttrMorph(element0, 'onmouseover');
@@ -1959,7 +2058,7 @@ define("borrowers/templates/components/input-checkbox", ["exports"], function (e
         morphs[4] = dom.createMorphAt(dom.childAt(element0, [5]), 0, 0);
         return morphs;
       },
-      statements: [["attribute", "onclick", ["subexpr", "action", ["isCheck"], [], ["loc", [null, [1, 36], [1, 56]]]]], ["attribute", "onmouseover", ["subexpr", "action", ["overCss"], [], ["loc", [null, [1, 69], [1, 89]]]]], ["attribute", "onmouseout", ["subexpr", "action", ["outCss"], [], ["loc", [null, [1, 101], [1, 120]]]]], ["attribute", "name", ["get", "name", ["loc", [null, [2, 31], [2, 35]]]]], ["content", "label", ["loc", [null, [4, 8], [4, 17]]]]],
+      statements: [["attribute", "onclick", ["subexpr", "action", ["isCheck"], [], ["loc", [null, [1, 36], [1, 56]]]]], ["attribute", "onmouseover", ["subexpr", "action", ["overCss"], [], ["loc", [null, [1, 69], [1, 89]]]]], ["attribute", "onmouseout", ["subexpr", "action", ["outCss"], [], ["loc", [null, [1, 101], [1, 120]]]]], ["attribute", "name", ["get", "name", ["loc", [null, [3, 31], [3, 35]]]]], ["content", "label", ["loc", [null, [4, 8], [4, 17]]]]],
       locals: [],
       templates: []
     };
@@ -2673,57 +2772,6 @@ define("borrowers/templates/components/main-page", ["exports"], function (export
     };
   })());
 });
-define("borrowers/templates/components/page-grid", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "missing-wrapper",
-          "problems": ["wrong-type", "multiple-nodes"]
-        },
-        "revision": "Ember@2.2.0",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 6,
-            "column": 0
-          }
-        },
-        "moduleName": "borrowers/templates/components/page-grid.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode(" \n\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [["inline", "row-count", [], ["name", ["subexpr", "@mut", [["get", "name", ["loc", [null, [1, 17], [1, 21]]]]], [], []], "total-number", ["subexpr", "@mut", [["get", "model.length", ["loc", [null, [1, 35], [1, 47]]]]], [], []]], ["loc", [null, [1, 0], [1, 49]]]], ["inline", "data-by-grid", [], ["model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [3, 21], [3, 26]]]]], [], []]], ["loc", [null, [3, 0], [3, 28]]]]],
-      locals: [],
-      templates: []
-    };
-  })());
-});
 define("borrowers/templates/components/page-list", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
@@ -3313,7 +3361,7 @@ define("borrowers/templates/components/page-list", ["exports"], function (export
     };
   })());
 });
-define("borrowers/templates/components/page-picture", ["exports"], function (exports) {
+define("borrowers/templates/components/page-picture-timer", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
       return {
@@ -3331,7 +3379,7 @@ define("borrowers/templates/components/page-picture", ["exports"], function (exp
               "column": 3
             }
           },
-          "moduleName": "borrowers/templates/components/page-picture.hbs"
+          "moduleName": "borrowers/templates/components/page-picture-timer.hbs"
         },
         isEmpty: false,
         arity: 1,
@@ -3374,7 +3422,7 @@ define("borrowers/templates/components/page-picture", ["exports"], function (exp
             "column": 0
           }
         },
-        "moduleName": "borrowers/templates/components/page-picture.hbs"
+        "moduleName": "borrowers/templates/components/page-picture-timer.hbs"
       },
       isEmpty: false,
       arity: 0,
@@ -3607,159 +3655,6 @@ define("borrowers/templates/components/row-count", ["exports"], function (export
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [0]);
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 1, 1);
-        morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]), 3, 3);
-        return morphs;
-      },
-      statements: [["content", "name", ["loc", [null, [3, 2], [3, 10]]]], ["block", "if", [["get", "isLoading", ["loc", [null, [7, 8], [7, 17]]]]], [], 0, 1, ["loc", [null, [7, 2], [11, 9]]]]],
-      locals: [],
-      templates: [child0, child1]
-    };
-  })());
-});
-define("borrowers/templates/components/row-sort", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template((function () {
-    var child0 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.2.0",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 7,
-              "column": 2
-            },
-            "end": {
-              "line": 9,
-              "column": 2
-            }
-          },
-          "moduleName": "borrowers/templates/components/row-sort.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("			获取更多数据...\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes() {
-          return [];
-        },
-        statements: [],
-        locals: [],
-        templates: []
-      };
-    })();
-    var child1 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.2.0",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 9,
-              "column": 2
-            },
-            "end": {
-              "line": 11,
-              "column": 2
-            }
-          },
-          "moduleName": "borrowers/templates/components/row-sort.hbs"
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("			已全部加载，共");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("span");
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("个\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
-          return morphs;
-        },
-        statements: [["content", "total-number", ["loc", [null, [10, 16], [10, 32]]]]],
-        locals: [],
-        templates: []
-      };
-    })();
-    return {
-      meta: {
-        "fragmentReason": {
-          "name": "triple-curlies"
-        },
-        "revision": "Ember@2.2.0",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 13,
-            "column": 6
-          }
-        },
-        "moduleName": "borrowers/templates/components/row-sort.hbs"
-      },
-      isEmpty: false,
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1, "class", "clearfix row-sort");
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("span");
-        dom.setAttribute(el2, "class", "fl");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "fr");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("如果正在加载后端数据，data.isLoading的值会变成true");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         return el0;
       },
@@ -4296,7 +4191,7 @@ define("borrowers/templates/home/picture", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["inline", "page-picture", [], ["model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 22], [7, 27]]]]], [], []]], ["loc", [null, [7, 1], [7, 29]]]]],
+        statements: [["inline", "page-picture-timer", [], ["model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [7, 28], [7, 33]]]]], [], []]], ["loc", [null, [7, 1], [7, 35]]]]],
         locals: [],
         templates: []
       };

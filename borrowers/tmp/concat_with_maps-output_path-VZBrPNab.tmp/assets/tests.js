@@ -34,6 +34,15 @@ define('borrowers/tests/components/button-upload.jshint', ['exports'], function 
     assert.ok(true, 'components/button-upload.js should pass jshint.');
   });
 });
+define('borrowers/tests/components/cell-sort.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - components');
+  QUnit.test('components/cell-sort.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'components/cell-sort.js should pass jshint.');
+  });
+});
 define('borrowers/tests/components/data-by-grid.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -49,7 +58,7 @@ define('borrowers/tests/components/data-by-list.jshint', ['exports'], function (
   QUnit.module('JSHint - components');
   QUnit.test('components/data-by-list.js should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/data-by-list.js should pass jshint.\ncomponents/data-by-list.js: line 53, col 38, Expected \'===\' and instead saw \'==\'.\n\n1 error');
+    assert.ok(false, 'components/data-by-list.js should pass jshint.\ncomponents/data-by-list.js: line 62, col 38, Expected \'===\' and instead saw \'==\'.\n\n1 error');
   });
 });
 define('borrowers/tests/components/data-by-picture.jshint', ['exports'], function (exports) {
@@ -142,15 +151,6 @@ define('borrowers/tests/components/main-page.jshint', ['exports'], function (exp
     assert.ok(false, 'components/main-page.js should pass jshint.\ncomponents/main-page.js: line 8, col 35, Expected \'===\' and instead saw \'==\'.\ncomponents/main-page.js: line 17, col 35, Expected \'===\' and instead saw \'==\'.\n\n2 errors');
   });
 });
-define('borrowers/tests/components/page-grid.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components');
-  QUnit.test('components/page-grid.js should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/page-grid.js should pass jshint.');
-  });
-});
 define('borrowers/tests/components/page-list.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -160,13 +160,13 @@ define('borrowers/tests/components/page-list.jshint', ['exports'], function (exp
     assert.ok(false, 'components/page-list.js should pass jshint.\ncomponents/page-list.js: line 53, col 38, Expected \'===\' and instead saw \'==\'.\n\n1 error');
   });
 });
-define('borrowers/tests/components/page-picture.jshint', ['exports'], function (exports) {
+define('borrowers/tests/components/page-picture-timer.jshint', ['exports'], function (exports) {
   'use strict';
 
   QUnit.module('JSHint - components');
-  QUnit.test('components/page-picture.js should pass jshint', function (assert) {
+  QUnit.test('components/page-picture-timer.js should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'components/page-picture.js should pass jshint.');
+    assert.ok(true, 'components/page-picture-timer.js should pass jshint.');
   });
 });
 define('borrowers/tests/components/row-count.jshint', ['exports'], function (exports) {
@@ -176,15 +176,6 @@ define('borrowers/tests/components/row-count.jshint', ['exports'], function (exp
   QUnit.test('components/row-count.js should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'components/row-count.js should pass jshint.');
-  });
-});
-define('borrowers/tests/components/row-sort.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - components');
-  QUnit.test('components/row-sort.js should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/row-sort.js should pass jshint.');
   });
 });
 define('borrowers/tests/components/span-dropdown.jshint', ['exports'], function (exports) {
@@ -766,6 +757,156 @@ define('borrowers/tests/integration/components/button-upload-test.jshint', ['exp
   QUnit.test('integration/components/button-upload-test.js should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/button-upload-test.js should pass jshint.');
+  });
+});
+define('borrowers/tests/integration/components/cell-sort-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleForComponent)('cell-sort', 'Integration | Component | cell sort', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.2.0',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 13
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'cell-sort', ['loc', [null, [1, 0], [1, 13]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:" + EOL +
+    this.render(Ember.HTMLBars.template((function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            'fragmentReason': false,
+            'revision': 'Ember@2.2.0',
+            'loc': {
+              'source': null,
+              'start': {
+                'line': 2,
+                'column': 4
+              },
+              'end': {
+                'line': 4,
+                'column': 4
+              }
+            }
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode('      template block text\n');
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+
+      return {
+        meta: {
+          'fragmentReason': {
+            'name': 'missing-wrapper',
+            'problems': ['wrong-type']
+          },
+          'revision': 'Ember@2.2.0',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 5,
+              'column': 2
+            }
+          }
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode('\n');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode('  ');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [['block', 'cell-sort', [], [], 0, null, ['loc', [null, [2, 4], [4, 18]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), 'template block text');
+  });
+});
+define('borrowers/tests/integration/components/cell-sort-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration/components');
+  QUnit.test('integration/components/cell-sort-test.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/cell-sort-test.js should pass jshint.');
   });
 });
 define('borrowers/tests/integration/components/data-by-grid-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
@@ -2568,156 +2709,6 @@ define('borrowers/tests/integration/components/main-page-test.jshint', ['exports
     assert.ok(true, 'integration/components/main-page-test.js should pass jshint.');
   });
 });
-define('borrowers/tests/integration/components/page-grid-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('page-grid', 'Integration | Component | page grid', {
-    integration: true
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
-
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.2.0',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 13
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'page-grid', ['loc', [null, [1, 0], [1, 13]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:" + EOL +
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.2.0',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.2.0',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'page-grid', [], [], 0, null, ['loc', [null, [2, 4], [4, 18]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
-  });
-});
-define('borrowers/tests/integration/components/page-grid-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components');
-  QUnit.test('integration/components/page-grid-test.js should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/page-grid-test.js should pass jshint.');
-  });
-});
 define('borrowers/tests/integration/components/page-list-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
   (0, _emberQunit.moduleForComponent)('page-list', 'Integration | Component | page list', {
@@ -2868,9 +2859,9 @@ define('borrowers/tests/integration/components/page-list-test.jshint', ['exports
     assert.ok(true, 'integration/components/page-list-test.js should pass jshint.');
   });
 });
-define('borrowers/tests/integration/components/page-picture-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+define('borrowers/tests/integration/components/page-picture-timer-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  (0, _emberQunit.moduleForComponent)('page-picture', 'Integration | Component | page picture', {
+  (0, _emberQunit.moduleForComponent)('page-picture-timer', 'Integration | Component | page picture timer', {
     integration: true
   });
 
@@ -2895,7 +2886,7 @@ define('borrowers/tests/integration/components/page-picture-test', ['exports', '
             },
             'end': {
               'line': 1,
-              'column': 16
+              'column': 22
             }
           }
         },
@@ -2916,7 +2907,7 @@ define('borrowers/tests/integration/components/page-picture-test', ['exports', '
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'page-picture', ['loc', [null, [1, 0], [1, 16]]]]],
+        statements: [['content', 'page-picture-timer', ['loc', [null, [1, 0], [1, 22]]]]],
         locals: [],
         templates: []
       };
@@ -3000,7 +2991,7 @@ define('borrowers/tests/integration/components/page-picture-test', ['exports', '
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [['block', 'page-picture', [], [], 0, null, ['loc', [null, [2, 4], [4, 21]]]]],
+        statements: [['block', 'page-picture-timer', [], [], 0, null, ['loc', [null, [2, 4], [4, 27]]]]],
         locals: [],
         templates: [child0]
       };
@@ -3009,13 +3000,13 @@ define('borrowers/tests/integration/components/page-picture-test', ['exports', '
     assert.equal(this.$().text().trim(), 'template block text');
   });
 });
-define('borrowers/tests/integration/components/page-picture-test.jshint', ['exports'], function (exports) {
+define('borrowers/tests/integration/components/page-picture-timer-test.jshint', ['exports'], function (exports) {
   'use strict';
 
   QUnit.module('JSHint - integration/components');
-  QUnit.test('integration/components/page-picture-test.js should pass jshint', function (assert) {
+  QUnit.test('integration/components/page-picture-timer-test.js should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/components/page-picture-test.js should pass jshint.');
+    assert.ok(true, 'integration/components/page-picture-timer-test.js should pass jshint.');
   });
 });
 define('borrowers/tests/integration/components/row-count-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
@@ -3166,156 +3157,6 @@ define('borrowers/tests/integration/components/row-count-test.jshint', ['exports
   QUnit.test('integration/components/row-count-test.js should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/row-count-test.js should pass jshint.');
-  });
-});
-define('borrowers/tests/integration/components/row-sort-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
-
-  (0, _emberQunit.moduleForComponent)('row-sort', 'Integration | Component | row sort', {
-    integration: true
-  });
-
-  (0, _emberQunit.test)('it renders', function (assert) {
-
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
-
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.2.0',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 12
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'row-sort', ['loc', [null, [1, 0], [1, 12]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:" + EOL +
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'fragmentReason': false,
-            'revision': 'Ember@2.2.0',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          isEmpty: false,
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'fragmentReason': {
-            'name': 'missing-wrapper',
-            'problems': ['wrong-type']
-          },
-          'revision': 'Ember@2.2.0',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        isEmpty: false,
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'row-sort', [], [], 0, null, ['loc', [null, [2, 4], [4, 17]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
-  });
-});
-define('borrowers/tests/integration/components/row-sort-test.jshint', ['exports'], function (exports) {
-  'use strict';
-
-  QUnit.module('JSHint - integration/components');
-  QUnit.test('integration/components/row-sort-test.js should pass jshint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'integration/components/row-sort-test.js should pass jshint.');
   });
 });
 define('borrowers/tests/integration/components/span-dropdown-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

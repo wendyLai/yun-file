@@ -22,6 +22,9 @@
   input[type="password"] {
     -webkit-appearance: none;
     -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
     /* mobile firefox too! */
   }
 
@@ -44,11 +47,11 @@
    */
 
   html {
-    /* 1 */
-    -ms-text-size-adjust: 100%;
-    /* 2 */
     -webkit-text-size-adjust: 100%;
-    /* 2 */
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -o-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   /**
@@ -310,6 +313,10 @@
     outline: none;
     overflow: visible;
     -webkit-appearance: button;
+    -moz-appearance: button;
+    -ms-appearance: button;
+    -o-appearance: button;
+    appearance: button;
     /* 2 */
     cursor: pointer;
     /* 3 */
@@ -336,6 +343,10 @@
   select {
     border: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
   }
   /**
    * Re-set default cursor for disabled elements.
@@ -392,6 +403,26 @@
     height: auto;
   }
 
+  input[type="number"]::-moz-inner-spin-button,
+  input[type="number"]::-moz-outer-spin-button {
+    height: auto;
+  }
+
+  input[type="number"]::-ms-inner-spin-button,
+  input[type="number"]::-ms-outer-spin-button {
+    height: auto;
+  }
+
+  input[type="number"]::-o-inner-spin-button,
+  input[type="number"]::-o-outer-spin-button {
+    height: auto;
+  }
+
+  input[type="number"]::inner-spin-button,
+  input[type="number"]::outer-spin-button {
+    height: auto;
+  }
+
   /**
    * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
    * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
@@ -400,6 +431,10 @@
 
   input[type="search"] {
     -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    -ms-appearance: textfield;
+    -o-appearance: textfield;
+    appearance: textfield;
     /* 1 */
     /* 2 */
     box-sizing: content-box;
@@ -414,6 +449,10 @@
   input[type="search"]::-webkit-search-cancel-button,
   input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
   }
 
   /**
@@ -577,6 +616,11 @@
 
   input[type=checkbox],input[type=radio]{
     -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background: #fff;
   }
 
   /* -----获取焦点时----- */
@@ -588,7 +632,7 @@
      border-color: #008BF5;
   }
 
-  input:focus::-webkit-input-p   laceholder{
+  input:focus::-webkit-input-placeholder{
       color: #444;
   }
   :-moz-placeholder { Mozilla Firefox 4 to 18
@@ -652,10 +696,10 @@
     left: 0; /*size*/
     width: 0.7142857rem; /*size*/
     height: 0.7142857rem; /*size*/
-    z-index: -1;
     margin: 0.35714285rem;
     position: absolute;
     background: transparent;
+    cursor: pointer;
   }
 
   .input-checkbox span{
@@ -759,6 +803,10 @@
     border-top:1px solid #949494;
     border-left:1px solid #949494;
     -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);
   }
 
   .span-dropdown ul.horizontal label{
@@ -846,7 +894,39 @@
     background-color: #d7d7d7; 
   } 
 
+  progress::-moz-progress-bar { 
+    background-color: #d7d7d7; 
+  } 
+
+  progress::-ms-progress-bar { 
+    background-color: #d7d7d7; 
+  } 
+  
+  progress::-o-progress-bar { 
+    background-color: #d7d7d7; 
+  } 
+
+  progress::progress-bar { 
+    background-color: #d7d7d7; 
+  } 
+
   progress::-webkit-progress-value { 
+    background-color: #74C709; 
+  }
+
+  progress::-moz-progress-value { 
+    background-color: #74C709; 
+  }
+
+  progress::-ms-progress-value { 
+    background-color: #74C709; 
+  }
+
+  progress::-o-progress-value { 
+    background-color: #74C709; 
+  }
+
+  progress::progress-value { 
     background-color: #74C709; 
   }
 
@@ -910,6 +990,12 @@
     color: #008BF5;
   }
 
+  button.un-show{
+    color: inherit;
+    background: transparent;
+    border-color: transparent;
+  }
+
 /*******************************
              Hgroup
 *******************************/
@@ -954,7 +1040,7 @@
   aside{
     left: 0;
     top:3.4em;
-    z-index: 9;
+    z-index: 1;
     width:210px;
     height: calc(100% - 3.4em);
     display: block;
@@ -1142,6 +1228,11 @@
 
   #main #list-tabel #list-header ul li{
     border-right:1px solid #ccc;
+    cursor: pointer;
+  }
+
+  #main #list-tabel #list-header ul li:hover{
+     background: #E8F5FD;
   }
 
   #main #list-tabel #list-header ul li>*{

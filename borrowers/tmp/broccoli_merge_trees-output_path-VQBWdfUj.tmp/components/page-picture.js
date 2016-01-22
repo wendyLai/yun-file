@@ -1,1 +1,0 @@
-/home/lwr/yunFile/borrowers/app/components/page-picture.js
